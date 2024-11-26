@@ -6,8 +6,8 @@ const userRoutes = require('./routes/userRoutes')
 
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // Handles form submissions
+app.use(express.json()); // Handles JSON payloads
 app.set('view engine', 'ejs');
 
 

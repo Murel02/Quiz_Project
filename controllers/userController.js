@@ -1,11 +1,10 @@
 const User = require('../models/user')
-
-
+const bcrypt = require('bcrypt');
 
 exports.createUser = async (req, res) => {
-    const { name, password, email } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!name || !password || !email) {
+    if (!name || !email || !password) {
         return res.status(400).send('All fields are required.');
     }
 
@@ -16,14 +15,32 @@ exports.createUser = async (req, res) => {
             return res.status(400).send('User already exists.');
         }
 
-        // Create a new user
-        const user = new User({ name, password, email });
-        await user.save();
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Redirect to the home page (or another success route)
-        res.redirect('/home'); // Make sure you have a route to handle `/home`
-    } catch (error) {
-        console.error('Error creating user:', error.message);
-        res.status(500).send('An error occurred while creating the user.');
+        // Create and save the new user
+        const newUser = new User({ name, email, password: hashedPassword });
+        await newUser.save();
+
+        res.render('login')
+    } catch (err) {
+        console.error('Error creating user:', err);
+        res.status(500).send('Server error');
+    }
+};
+
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (user && await bcrypt.compare(password, user.password)) {
+            return res.send('Login successful!');
+        } else {
+            return res.status(400).send('Invalid email or password');
+        }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send('Server error');
     }
 };

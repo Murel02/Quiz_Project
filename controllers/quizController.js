@@ -25,7 +25,7 @@ exports.createQuestion = async(req, res)=>{
         await newQuiz.save();
 
         res.status(201).json({
-            message: 'Quiz question created succesfully'
+            message: 'Quiz question created successfully'
         });
     } catch(error){
         res.status(500).json({
