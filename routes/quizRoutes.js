@@ -6,7 +6,12 @@ const quiz = require('../models/quiz');
 const quizController = require('../controllers/quizController')
 
 
-router.post('/create', quizController.createQuestion);
 
+
+router.get('/quiz', quizController.createQuestion)
+
+router.get('/quiz', (req, res) => {
+    res.render('createUser'); // Render the `register.ejs` file
+});
 
 module.exports = router;
