@@ -17,25 +17,32 @@
 <div class="container">
     <% if (quiz) { %>
         <h1><%= quiz.title %></h1>
-        <% quiz.questions.forEach((question, index) => { %>
-            <div>
-                <h3>Question <%= index + 1 %>: <%= question.question %></h3>
-                <% question.options.forEach(option => { %>
-                    <label>
-                        <input type="radio" name="answer<%= index %>" value="<%= option %>">
-                        <%= option %>
-                    </label>
-                <% }) %>
-            </div>
-        <% }) %>
+        <!-- Form to handle quiz submission -->
+        <form action="/quiz/submit/<%= quiz._id %>" method="POST">
+            <% quiz.questions.forEach((question, index) => { %>
+                <div>
+                    <h3>Question <%= index + 1 %>: <%= question.question %></h3>
+                    <% question.options.forEach(option => { %>
+                        <label>
+                            <input type="radio" name="answer<%= index %>" value="<%= option %>" required>
+                            <%= option %>
+                        </label>
+                    <% }) %>
+                </div>
+            <% }) %>
+            <button type="submit" class="button">Submit Answers</button>
+        </form>
     <% } else { %>
         <h1><%= question %></h1>
-        <% options.forEach(option => { %>
-            <label>
-                <input type="radio" name="answer" value="<%= option %>">
-                <%= option %>
-            </label>
-        <% }) %>
+        <form action="/quiz/submit" method="POST">
+            <% options.forEach(option => { %>
+                <label>
+                    <input type="radio" name="answer" value="<%= option %>" required>
+                    <%= option %>
+                </label>
+            <% }) %>
+            <button type="submit" class="button">Submit Answer</button>
+        </form>
     <% } %>
 </div>
 </body>
