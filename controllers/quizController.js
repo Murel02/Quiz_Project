@@ -6,7 +6,7 @@ exports.createQuestion = async (req, res) => {
         const questionType = Math.floor(Math.random() * 4);
         let questionText = '';
         let correctAnswer;
-        const options = [];
+        let options = []; // Use let instead of const
 
         const x = Math.floor(Math.random() * 25) + 1;
         const y = Math.floor(Math.random() * 25) + 1;
@@ -26,23 +26,25 @@ exports.createQuestion = async (req, res) => {
                 correctAnswer = x * y;
                 break;
             case 3:
-                questionText = 'Which is higher ${x} or ${y}?';
-                if (x < y){
-                    correctAnswer
-                }
+                questionText = `Which is higher ${x} or ${y}?`;
+                correctAnswer = x > y ? x : y;
+                options.push(x, y);
+                break;
             default:
                 throw new Error('Invalid question type');
         }
 
-        options.push(correctAnswer, correctAnswer + 1, correctAnswer - 1, correctAnswer + 2);
-        const uniqueOptions = Array.from(new Set(options)).sort(() => Math.random() - 0.5);
+        if (questionType !== 3) {
+            options.push(correctAnswer, correctAnswer + 1, correctAnswer - 1);
+            options = Array.from(new Set(options)).sort(() => Math.random() - 0.5);
+        }
 
         // Save to database
         let quiz = await Quiz.findOne({ title: "Math Quiz" });
         if (!quiz) {
             quiz = new Quiz({ title: "Math Quiz", questions: [] });
         }
-        quiz.questions.push({ question: questionText, options: uniqueOptions, answer: correctAnswer.toString() });
+        quiz.questions.push({ question: questionText, options, answer: correctAnswer.toString() }); // Use `options` here
         await quiz.save();
 
         // Redirect to the quiz page or render the generated question
@@ -52,6 +54,7 @@ exports.createQuestion = async (req, res) => {
         res.status(500).send("An error occurred while generating the quiz question.");
     }
 };
+
 
 /*
 
