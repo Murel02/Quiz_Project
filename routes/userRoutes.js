@@ -17,8 +17,14 @@ router.get('/register', (req, res) => {
 });
 
 // Render leaderboard
-router.get('/leaderboard', (req, res) => {
-    res.render('leaderboard');
+router.get('/leaderboard', async (req, res) => {
+    try {
+        const users = await User.find().sort({ score: -1 }); // Sort users by score (descending)
+        res.render('leaderboard', { users }); // Render the leaderboard view with sorted users
+    } catch (err) {
+        console.error('Error fetching leaderboard:', err.message);
+        res.status(500).send('An error occurred while loading the leaderboard.');
+    }
 });
 
 // Handle Registration Submission

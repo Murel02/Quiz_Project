@@ -1,53 +1,56 @@
-/*
-const Quiz = require('../models/quiz');
 
-
-//Questions for 0-1 class
-exports.createQuestion = async(req, res)=>{
-    try {
-        const x = Math.floor((Math.random() * 25) +1);
-        const y = Math.floor((Math.random() * 25) +1);
-
-        const question = `What is ${x} + ${y}?`
-        const answer = x + y;
-
-        const options =
-        [answer,
-            answer + 1,
-            answer - 1,
-            answer + 2].sort(() => Math.random()- 0.5)
-
-        const newQuiz = new Quiz({
-            question: question,
-            answer: answer,
-            options: options,
-        });
-
-        await newQuiz.save();
-
-        res.status(201).json({
-            message: 'Quiz question created successfully'
-        });
-    } catch(error){
-        res.status(500).json({
-            message: 'Error while creating quiz question',
-            error: error.message,
-        })
-    }
-}
-
- */
 const Quiz = require('../models/quiz');
 
 exports.createQuestion = async (req, res) => {
     try {
+        const questionType = Math.floor(Math.random() * 3);
+        let questionText = '';
+        let correctAnswer;
+        const options = [];
+
         const x = Math.floor(Math.random() * 25) + 1;
         const y = Math.floor(Math.random() * 25) + 1;
 
-        const questionText = `What is ${x} + ${y}?`; // Use backticks for template literals
-        const correctAnswer = x + y;
+        // Generate question and answer based on type
+        switch (questionType) {
+            case 0:
+                questionText = `What is ${x} + ${y}?`;
+                correctAnswer = x + y;
+                break;
+            case 1:
+                questionText = `What is ${x} - ${y}?`;
+                correctAnswer = x - y;
+                break;
+            case 2:
+                questionText = `What is ${x} * ${y}?`;
+                correctAnswer = x * y;
+                break;
+            default:
+                throw new Error('Invalid question type');
+        }
 
-        const options = Array.from(new Set([
+        options.push(correctAnswer, correctAnswer + 1, correctAnswer - 1, correctAnswer + 2);
+        const uniqueOptions = Array.from(new Set(options)).sort(() => Math.random() - 0.5);
+
+        // Save to database
+        let quiz = await Quiz.findOne({ title: "Math Quiz" });
+        if (!quiz) {
+            quiz = new Quiz({ title: "Math Quiz", questions: [] });
+        }
+        quiz.questions.push({ question: questionText, options: uniqueOptions, answer: correctAnswer.toString() });
+        await quiz.save();
+
+        // Redirect to the quiz page or render the generated question
+        res.redirect(`/quiz/${quiz._id}`);
+    } catch (error) {
+        console.error("Error generating quiz question:", error);
+        res.status(500).send("An error occurred while generating the quiz question.");
+    }
+};
+
+/*
+
+       /* const options = Array.from(new Set([
             correctAnswer,
             correctAnswer + 1,
             correctAnswer - 1,
