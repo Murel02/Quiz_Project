@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const quizController = require('../controllers/quizController');
 const Quiz = require('../models/quiz');
+const authMiddleware = require('../middleware/authMiddleware');
 
 // Route to create a question (POST)
 router.post('/quiz/create', quizController.createQuestion);
 
 // Route to display the quiz (GET)
-router.get('/quiz/:id', async (req, res) => {
+router.get('/quiz/:id', authMiddleware,async (req, res) => {
     try {
         const { id } = req.params; // Get quiz ID from the URL
         const quiz = await Quiz.findById(id);

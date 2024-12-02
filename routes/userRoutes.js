@@ -6,9 +6,8 @@ const userController = require('../controllers/userController');
 
 // Render Login Page
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { success: req.query.success });
 });
-
 // Handle login
 router.post('/login', userController.login);
 

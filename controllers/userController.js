@@ -9,25 +9,23 @@ exports.createUser = async (req, res) => {
     }
 
     try {
-        // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).send('User already exists.');
         }
 
-        // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create and save the new user
         const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
 
-        res.render('login')
+        res.redirect('/login?success=1'); // Redirect to login with success query
     } catch (err) {
         console.error('Error creating user:', err);
         res.status(500).send('Server error');
     }
 };
+
 
 exports.login = async (req, res) => {
     const { email, password } = req.body;
@@ -35,7 +33,8 @@ exports.login = async (req, res) => {
     try {
         const user = await User.findOne({ email });
         if (user && await bcrypt.compare(password, user.password)) {
-            res.render('quiz');
+            req.session.userId = user.id; // Save user ID in session
+            res.redirect('/quiz'); // Redirect to the quiz page
         } else {
             return res.status(400).send('Invalid email or password');
         }
@@ -43,6 +42,12 @@ exports.login = async (req, res) => {
         console.error(err);
         return res.status(500).send('Server error');
     }
+};
+
+exports.logout = (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/login'); // Redirect to login page after logout
+    });
 };
 
 // User list for leaderboard
