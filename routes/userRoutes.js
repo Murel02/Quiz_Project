@@ -17,6 +17,11 @@ router.get('/register', (req, res) => {
     res.render('createUser'); // Render the `register.ejs` file
 });
 
+// Render leaderboard
+router.get('/leaderboard', (req, res) => {
+    res.render('leaderboard');
+});
+
 // Handle Registration Submission
 router.post('/register', userController.createUser);
 

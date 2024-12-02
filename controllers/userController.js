@@ -44,3 +44,30 @@ exports.login = async (req, res) => {
         return res.status(500).send('Server error');
     }
 };
+
+// User list for leaderboard
+exports.getAllUsers = async (req, res) => {
+    try{
+        const users = await User.find();
+        res.render('leaderboard', {users});
+    } catch(err) {
+        console.error("Error getting user information:", err);
+        res.status(500).send("Error getting user information.")
+    }
+};
+
+// Update the user
+exports.updateUser = async (req, res) => {
+    try{
+        await User.findByIdAndUpdate(req.params.id, {
+            name: req.body.name,
+            password: req.body.password,
+            email: req.body.email,
+            score: req.body.score
+        });
+        res.redirect('/home')
+    } catch(err){
+        console.error("Error updating user:", err);
+        res.status(500).send("Error updating user.");
+    }
+}
