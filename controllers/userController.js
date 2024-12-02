@@ -35,7 +35,7 @@ exports.login = async (req, res) => {
     try {
         const user = await User.findOne({ email });
         if (user && await bcrypt.compare(password, user.password)) {
-            return res.send('Login successful!');
+            res.render('quiz');
         } else {
             return res.status(400).send('Invalid email or password');
         }

@@ -1,23 +1,29 @@
-// Route file 
 const express = require('express');
 const router = express.Router();
+const quizController = require('../controllers/quizController');
+const Quiz = require('../models/quiz');
 
-const quiz = require('../models/quiz');
-const quizController = require('../controllers/quizController')
+// Route to create a question (POST)
+router.post('/quiz/create', quizController.createQuestion);
 
+// Route to display the quiz (GET)
+router.get('/quiz/:id', async (req, res) => {
+    try {
+        const { id } = req.params; // Get quiz ID from the URL
+        const quiz = await Quiz.findById(id);
 
-// Get Quiz Page
-router.get('/quiz/:quizId', async (req, res) => {
-    res.render('quiz');
+        if (!quiz) {
+            return res.status(404).send('Quiz not found');
+        }
+
+        res.render('quiz', { quiz }); // Pass quiz data to the EJS template
+    } catch (error) {
+        console.error('Error fetching quiz:', error);
+        res.status(500).send('Server error');
+    }
 });
 
-router.get('/quiz', quizController.createQuestion)
-
-router.get('/quiz', (req, res) => {
-    res.render('createUser'); // Render the `register.ejs` file
-});
-
-// Render frontpage
+// Render the frontpage (GET)
 router.get('/home', (req, res) => {
     res.render('home');
 });
