@@ -34,9 +34,5 @@ router.get('/home', (req, res) => {
     res.render('home');
 });
 
-// Render leaderboard
-router.get('/leaderboard', (req, res) => {
-    res.render('leaderboard');
-});
 
 module.exports = router;

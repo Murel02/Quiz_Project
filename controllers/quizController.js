@@ -3,7 +3,7 @@ const Quiz = require('../models/quiz');
 
 exports.createQuestion = async (req, res) => {
     try {
-        const questionType = Math.floor(Math.random() * 3);
+        const questionType = Math.floor(Math.random() * 4);
         let questionText = '';
         let correctAnswer;
         const options = [];
@@ -25,6 +25,11 @@ exports.createQuestion = async (req, res) => {
                 questionText = `What is ${x} * ${y}?`;
                 correctAnswer = x * y;
                 break;
+            case 3:
+                questionText = 'Which is higher ${x} or ${y}?';
+                if (x < y){
+                    correctAnswer
+                }
             default:
                 throw new Error('Invalid question type');
         }
