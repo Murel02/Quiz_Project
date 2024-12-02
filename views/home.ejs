@@ -14,7 +14,9 @@
     <div class="content">
         <p>Test your knowledge and compete with others in our exciting quizzes!</p>
         <div class="actions">
-            <a href="/quiz/start" class="button">Start Quiz</a>
+            <form action="/quiz/create" method="POST">
+                <button type="submit" class="button">Generate Random Question</button>
+            </form>
             <a href="/leaderboard" class="button">View Leaderboard</a>
             <a href="/login" class="button">Login</a>
             <a href="/register" class="button">Register</a>

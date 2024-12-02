@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
         const user = await User.findOne({ email });
         if (user && await bcrypt.compare(password, user.password)) {
             req.session.userId = user.id; // Save user ID in session
-            res.redirect('/quiz'); // Redirect to the quiz page
+            res.redirect('/home'); // Redirect to the quiz page
         } else {
             return res.status(400).send('Invalid email or password');
         }

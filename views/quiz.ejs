@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= quiz.title %> - Quiz</title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -15,29 +15,28 @@
     </nav>
 </header>
 <div class="container">
-    <h1><%= quiz.title %></h1>
-    <form action="/quiz/submit/<%= quiz._id %>" method="POST">
+    <% if (quiz) { %>
+        <h1><%= quiz.title %></h1>
         <% quiz.questions.forEach((question, index) => { %>
-            <div class="question">
+            <div>
                 <h3>Question <%= index + 1 %>: <%= question.question %></h3>
                 <% question.options.forEach(option => { %>
                     <label>
-                        <input
-                                type="radio"
-                                name="answer<%= index %>"
-                                value="<%= option %>"
-                                required
-                        >
+                        <input type="radio" name="answer<%= index %>" value="<%= option %>">
                         <%= option %>
                     </label>
                 <% }) %>
             </div>
         <% }) %>
-        <button type="submit" class="button">Submit Answers</button>
-    </form>
+    <% } else { %>
+        <h1><%= question %></h1>
+        <% options.forEach(option => { %>
+            <label>
+                <input type="radio" name="answer" value="<%= option %>">
+                <%= option %>
+            </label>
+        <% }) %>
+    <% } %>
 </div>
-<footer>
-    <p>&copy; 2024 QuizMaster. All rights reserved.</p>
-</footer>
 </body>
 </html>
