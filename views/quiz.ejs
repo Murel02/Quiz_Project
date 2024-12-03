@@ -1,49 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css"> <!-- Link to external stylesheet -->
 </head>
 <body>
 <header>
-    <nav>
-        <a href="/home">Home</a>
-        <a href="/leaderboard">Leaderboard</a>
-        <a href="/logout">Logout</a>
+    <nav> <!-- Navigation bar with links -->
+        <a href="/home">Home</a> <!-- Link to home page -->
+        <a href="/leaderboard">Leaderboard</a> <!-- Link to leaderboard page -->
+        <a href="/logout">Logout</a> <!-- Link to log out -->
     </nav>
 </header>
 <div class="container">
-    <% if (quiz) { %>
-        <h1><%= quiz.title %></h1>
-        <!-- Form to handle quiz submission -->
-        <form action="/quiz/submit/<%= quiz._id %>" method="POST">
-            <% quiz.questions.forEach((question, index) => { %>
-                <div>
-                    <h3>Question <%= index + 1 %>: <%= question.question %></h3>
-                    <% question.options.forEach(option => { %>
-                        <label>
-                            <input type="radio" name="answer<%= index %>" value="<%= option %>" required>
-                            <%= option %>
-                        </label>
-                    <% }) %>
-                </div>
+    <% if (quiz) { %> <!-- Check if a quiz object exists -->
+    <h1><%= quiz.title %></h1> <!-- Display the quiz title -->
+    <!-- Form to handle quiz submission -->
+    <form action="/quiz/submit/<%= quiz._id %>" method="POST">
+        <% quiz.questions.forEach((question, index) => { %> <!-- Loop through quiz questions -->
+        <div>
+            <h3>Question <%= index + 1 %>: <%= question.question %></h3> <!-- Display question -->
+            <% question.options.forEach(option => { %> <!-- Loop through answer options -->
+            <label>
+                <input type="radio" name="answer<%= index %>" value="<%= option %>" required> <!-- Radio button for each option -->
+                <%= option %> <!-- Display option text -->
+            </label>
             <% }) %>
-            <button type="submit" class="button">Submit Answers</button>
-        </form>
-    <% } else { %>
-        <h1><%= question %></h1>
-        <form action="/quiz/submit" method="POST">
-            <% options.forEach(option => { %>
-                <label>
-                    <input type="radio" name="answer" value="<%= option %>" required>
-                    <%= option %>
-                </label>
-            <% }) %>
-            <button type="submit" class="button">Submit Answer</button>
-        </form>
+        </div>
+        <% }) %>
+        <button type="submit" class="button">Submit Answers</button> <!-- Submit button -->
+    </form>
+    <% } else { %> <!-- If no quiz object, display a single question -->
+    <h1><%= question %></h1> <!-- Display the standalone question -->
+    <form action="/quiz/submit" method="POST">
+        <% options.forEach(option => { %> <!-- Loop through options -->
+        <label>
+            <input type="radio" name="answer" value="<%= option %>" required> <!-- Radio button for each option -->
+            <%= option %> <!-- Display option text -->
+        </label>
+        <% }) %>
+        <button type="submit" class="button">Submit Answer</button> <!-- Submit button -->
+    </form>
     <% } %>
 </div>
+<!-- -------------------------------------------------------------------------------- -->
+<main>
+    <div class="content">
+        <div class="actions">
+            <form action="/quiz/create" method="POST">
+                <button type="submit" class="button">Next Question</button>
+            </form>
+        </div>
+    </div>
+</main>
+<!-- -------------------------------------------------------------------------------- -->
+
 </body>
 </html>

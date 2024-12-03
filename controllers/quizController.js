@@ -1,12 +1,17 @@
-
 const Quiz = require('../models/quiz');
+
+let count = 0;
+let questionRoute = "/quiz/create"
+let finishedRoute = "/quiz/home"
 
 exports.createQuestion = async (req, res) => {
     try {
+        count++
+
         const questionType = Math.floor(Math.random() * 4);
         let questionText = '';
         let correctAnswer;
-        let options = []; // Use let instead of const
+        let options = []; // Use let for flexibility
 
         const x = Math.floor(Math.random() * 25) + 1;
         const y = Math.floor(Math.random() * 25) + 1;
@@ -26,7 +31,7 @@ exports.createQuestion = async (req, res) => {
                 correctAnswer = x * y;
                 break;
             case 3:
-                questionText = `Which is higher ${x} or ${y}?`;
+                questionText = `Which is higher, ${x} or ${y}?`;
                 correctAnswer = x > y ? x : y;
                 options.push(x, y);
                 break;
@@ -39,12 +44,23 @@ exports.createQuestion = async (req, res) => {
             options = Array.from(new Set(options)).sort(() => Math.random() - 0.5);
         }
 
-        // Save to database
+        // Find the quiz and clear all previous questions
         let quiz = await Quiz.findOne({ title: "Math Quiz" });
         if (!quiz) {
             quiz = new Quiz({ title: "Math Quiz", questions: [] });
+        } else {
+            // Clear all existing questions
+            quiz.questions = [];
         }
-        quiz.questions.push({ question: questionText, options, answer: correctAnswer.toString() }); // Use `options` here
+
+        // Add the new question
+        quiz.questions.push({
+            question: questionText,
+            options: options,
+            answer: correctAnswer.toString(),
+        });
+
+        // Save the updated quiz
         await quiz.save();
 
         // Redirect to the quiz page or render the generated question
@@ -54,48 +70,3 @@ exports.createQuestion = async (req, res) => {
         res.status(500).send("An error occurred while generating the quiz question.");
     }
 };
-
-
-/*
-
-       /* const options = Array.from(new Set([
-            correctAnswer,
-            correctAnswer + 1,
-            correctAnswer - 1,
-            correctAnswer + 2,
-        ])).sort(() => Math.random() - 0.5);
-
-        // Find or create the quiz
-        let quiz = await Quiz.findOne({ title: "Math Quiz for Grade 0-1" });
-
-        if (!quiz) {
-            quiz = new Quiz({
-                title: "Math Quiz for Grade 0-1",
-                progress: 0,
-                questions: [],
-            });
-        }
-
-        // Push the new question to the questions array
-        quiz.questions.push({
-            question: questionText,
-            options: options,
-            answer: correctAnswer.toString(),
-        });
-
-        // Save the quiz
-        await quiz.save();
-
-        res.status(201).json({
-            message: 'Quiz question created successfully',
-            question: questionText,
-            options: options,
-        });
-    } catch (error) {
-        console.error("Error creating quiz question:", error);
-        res.status(500).json({
-            message: "Error while creating quiz question",
-            error: error.message,
-        });
-    }
-};*/
