@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/leaderboard">Leaderboard</a>
+        <% if (isLoggedIn) { %>
+            <a href="/logout">Logout</a>
+        <% } else { %>
+            <a href="/login">Login</a>
+        <% } %>
+    </nav>
+</header>
+<div class="container">
+    <h1>Quiz Results</h1>
+    <p>You answered <strong><%= totalCorrect %></strong> out of <strong><%= totalQuestions %></strong> questions correctly.</p>
+    <ul>
+        <% quiz.forEach((question, index) => { %>
+            <li>
+                <strong>Question <%= index + 1 %>:</strong> <%= question.question %><br>
+                <strong>Your Answer:</strong> <%= question.yourAnswer || 'No Answer' %><br>
+                <strong>Correct Answer:</strong> <%= question.answer %><br>
+                <strong>Result:</strong> <%= question.isCorrect ? 'Correct' : 'Wrong' %>
+            </li>
+        <% }) %>
+    </ul>
+    <a href="/home" class="button">Back to Home</a>
+</div>
+<footer class="footer">
+    <p>&copy; 2024 QuizMaster. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -9,22 +9,51 @@
 <body>
 <header>
     <h1>Welcome to QuizMaster!</h1>
+    <nav>
+        <% if (isLoggedIn) { %>
+            <a href="/logout">Logout</a>
+        <% } else { %>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        <% } %>
+    </nav>
 </header>
 <main>
-    <div class="content">
-        <p>Test your knowledge and compete with others in our exciting quizzes!</p>
+    <div class="container">
+        <h1>Test Your Knowledge</h1>
+        <p>Ready to challenge yourself? Start a quiz now!</p>
         <div class="actions">
             <form action="/quiz/create" method="POST">
-                <button type="submit" class="button">Generate Random Question</button>
+                <button type="submit">Start Quiz</button>
             </form>
-            <a href="/leaderboard" class="button">View Leaderboard</a>
-            <a href="/login" class="button">Login</a>
-            <a href="/register" class="button">Register</a>
         </div>
+
+        <!-- Mini Leaderboard -->
+        <section class="leaderboard-preview">
+            <h2>Top Players</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% topPlayers.forEach(player => { %>
+                    <tr>
+                        <td><%= player.name %></td>
+                        <td><%= player.score %></td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+            <a href="/leaderboard" class="button">View Full Leaderboard</a>
+        </section>
     </div>
 </main>
-<footer>
+<footer class="footer">
     <p>&copy; 2024 QuizMaster. All rights reserved.</p>
 </footer>
+
 </body>
 </html>

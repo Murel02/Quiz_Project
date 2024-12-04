@@ -1,31 +1,172 @@
+/* Base Styles */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f8ff;
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
     color: #333;
     margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
 }
 
 header {
     background-color: #4CAF50;
     color: white;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
     padding: 20px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-main {
-    margin: 20px;
+h1, h3 {
+    color: #333333;
 }
 
-.actions {
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    border-left: 5px solid #4CAF50;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
     margin-top: 30px;
 }
 
-.button {
+/* Table Styles for Leaderboard */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/*Stle for preview leaderboard on homepage*/
+.leaderboard-preview {
+    margin-top: 40px;
+}
+
+.leaderboard-preview h2 {
+    font-size: 1.8rem;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.leaderboard-preview table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.leaderboard-preview th, .leaderboard-preview td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.leaderboard-preview th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.leaderboard-preview tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.leaderboard-preview .button {
     display: inline-block;
-    margin: 10px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 1rem;
     color: white;
     background-color: #4CAF50;
     text-decoration: none;
@@ -33,13 +174,6 @@ main {
     transition: background-color 0.3s;
 }
 
-.button:hover {
+.leaderboard-preview .button:hover {
     background-color: #45a049;
-}
-
-footer {
-    margin-top: 50px;
-    padding: 10px;
-    background-color: #333;
-    color: white;
 }

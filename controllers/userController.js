@@ -1,6 +1,8 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt');
 
+
+
 exports.createUser = async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -46,7 +48,7 @@ exports.login = async (req, res) => {
 
 exports.logout = (req, res) => {
     req.session.destroy(() => {
-        res.redirect('/login'); // Redirect to login page after logout
+        res.redirect('/home'); // Redirect to login page after logout
     });
 };
 

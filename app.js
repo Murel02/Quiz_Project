@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 // Session middleware configuration
 app.use(session({
-    secret: 'your_secret_key', // Replace with a secure secret key
+    secret: 'verySecretKey', // Secret key
     resave: false, // Avoid resaving session if it hasn't been modified
     saveUninitialized: true, // Save uninitialized sessions
     cookie: { secure: false } // Set `secure: true` if using HTTPS
@@ -25,9 +25,16 @@ mongoose.connect(process.env.DB_URI, {})
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.error("MongoDB Connection Error"));
 
+// Check if user is logged in
+app.use((req, res, next) => {
+    res.locals.isLoggedIn = !!req.session.userId; // `true` if logged in, `false` otherwise
+    next();
+});
+
 // Define routes
 app.use('/', userRoutes);
 app.use('/', quizRoutes);
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
