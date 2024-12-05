@@ -7,31 +7,35 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<header>
-    <h1>Welcome to QuizMaster!</h1>
-    <nav>
+<header class="header">
+    <a href="/home" class="logo">
+        <img src="/images/pixilart-drawing.png" alt="QuizMaster Logo" class="logo-image">
+    </a>
+    <h1 class="site-title">Welcome to QuizMaster!</h1>
+    <nav class="nav">
         <% if (isLoggedIn) { %>
-            <a href="/logout">Logout</a>
+            <a href="/logout" class="nav-link">Logout</a>
         <% } else { %>
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+            <a href="/login" class="nav-link">Login</a>
+            <a href="/register" class="nav-link">Register</a>
         <% } %>
     </nav>
 </header>
-<main>
+
+<main class="main">
     <div class="container">
-        <h1>Test Your Knowledge</h1>
-        <p>Ready to challenge yourself? Start a quiz now!</p>
+        <h1 class="main-title">Test Your Knowledge</h1>
+        <p class="main-description">Ready to challenge yourself? Start a quiz now!</p>
         <div class="actions">
             <form action="/quiz/create" method="POST">
-                <button type="submit">Start Quiz</button>
+                <button type="submit" class="button">Start Quiz</button>
             </form>
         </div>
 
         <!-- Mini Leaderboard -->
         <section class="leaderboard-preview">
-            <h2>Top Players</h2>
-            <table>
+            <h2 class="leaderboard-title">Top Players</h2>
+            <table class="leaderboard-table">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -54,6 +58,5 @@
 <footer class="footer">
     <p>&copy; 2024 QuizMaster. All rights reserved.</p>
 </footer>
-
 </body>
 </html>
