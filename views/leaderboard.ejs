@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Leaderboard</title> <!-- Title for the page -->
+    <link rel="stylesheet" href="/style.css"> <!-- External stylesheet for styling -->
 </head>
 <body>
 <header>
     <nav>
+        <!-- Logo linking to the home page -->
         <a href="/home" class="logo">
             <img src="/images/pixilart-drawing.png" alt="QuizMaster Logo" class="logo-image">
         </a>
+        <!-- Navigation links for home and conditional login/logout links -->
         <a href="/home">Home</a>
         <% if (isLoggedIn) { %>
-            <a href="/logout">Logout</a>
+            <a href="/logout">Logout</a> <!-- If logged in, show logout link -->
         <% } else { %>
-            <a href="/login">Login</a>
+            <a href="/login">Login</a> <!-- If not logged in, show login link -->
         <% } %>
     </nav>
 </header>
+
 <div class="container">
-    <h1>Leaderboard</h1>
+    <h1>Leaderboard</h1> <!-- Title for the leaderboard section -->
     <table>
         <thead>
+        <!-- Table headers for user name and score -->
         <tr>
             <th>Name</th>
             <th>Score</th>
         </tr>
         </thead>
         <tbody>
+        <!-- Loop through users array to display their names and scores -->
         <% users.forEach(user => { %>
             <tr>
-                <td><%= user.name %></td>
-                <td><%= user.score %></td>
+                <td><%= user.name %></td> <!-- Display the user's name -->
+                <td><%= user.score %></td> <!-- Display the user's score -->
             </tr>
         <% }) %>
         </tbody>

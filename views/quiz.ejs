@@ -2,13 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Quiz</title> <!-- Page title -->
+    <link rel="stylesheet" href="/style.css"> <!-- Link to external stylesheet -->
 </head>
 <body>
 <header>
+    <!-- Navigation bar with links to Home, Leaderboard, and Logout -->
     <nav>
         <a href="/home" class="logo">
             <img src="/images/pixilart-drawing.png" alt="QuizMaster Logo" class="logo-image">
@@ -18,23 +20,24 @@
         <a href="/logout">Logout</a>
     </nav>
 </header>
+
 <div class="container">
-    <% if (question) { %> <!-- Display the current question -->
-    <h1><%= quiz.title %></h1>
-    <h3>Question <%= questionIndex + 1 %>: <%= question.question %></h3>
+    <% if (question) { %> <!-- Display the current question if available -->
+    <h1><%= quiz.title %></h1> <!-- Display quiz title -->
+    <h3>Question <%= questionIndex + 1 %>: <%= question.question %></h3> <!-- Display current question number and text -->
     <form action="/quiz/<%= quiz._id %>/submit" method="POST">
-        <% question.options.forEach(option => { %>
-            <label>
-                <input type="radio" name="selectedAnswer" value="<%= option %>" required>
-                <%= option %>
-            </label>
+        <% question.options.forEach(option => { %> <!-- Loop through and display question options -->
+        <label>
+            <input type="radio" name="selectedAnswer" value="<%= option %>" required>
+            <%= option %> <!-- Display option text -->
+        </label>
         <% }) %>
-        <button type="submit" class="button">Submit Answer</button>
+        <button type="submit" class="button">Submit Answer</button> <!-- Submit button for answer -->
     </form>
-    <% } else { %> <!-- If no question is available, quiz is finished -->
+    <% } else { %> <!-- Display message if quiz is completed -->
     <h1>Quiz Completed!</h1>
     <p>Thank you for participating in the quiz.</p>
-    <a href="/home">Back to Home</a>
+    <a href="/home">Back to Home</a> <!-- Link to return to the home page -->
     <% } %>
 </div>
 </body>

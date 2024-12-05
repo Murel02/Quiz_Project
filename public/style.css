@@ -1,192 +1,192 @@
 /* Base Styles */
 body {
-    font-family: 'Roboto', Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
+    font-family: 'Roboto', Arial, sans-serif; /* Sets the base font and fallback fonts */
+    line-height: 1.6; /* Improves text readability */
+    color: #333; /* Sets the default text color */
+    margin: 0; /* Removes default body margin */
+    padding: 0; /* Removes default body padding */
+    background-color: #f9f9f9; /* Light background color for the page */
 }
 
 header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #4CAF50; /* Green header background */
+    color: white; /* White text color */
+    padding: 15px 20px; /* Adds space inside the header */
+    text-align: center; /* Centers text within the header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2rem;
+    margin: 0; /* Removes default margin for the heading */
+    font-size: 2rem; /* Sets a larger font size for the main title */
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    margin-right: 20px; /* Add space between the logo and the title */
+    display: flex; /* Allows logo and text alignment */
+    align-items: center; /* Vertically centers content */
+    text-decoration: none; /* Removes underline from logo text */
+    color: white; /* Sets logo text color */
+    margin-right: 20px; /* Adds space between the logo and other elements */
 }
 
 .logo-image {
-    width: 100px;
-    height: 100px;
+    width: 100px; /* Sets the width of the logo image */
+    height: 100px; /* Sets the height of the logo image */
 }
 
 nav {
-    margin-top: 10px;
+    margin-top: 10px; /* Adds space above the navigation bar */
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 8px 15px;
-    border-radius: 3px;
-    transition: background-color 0.3s ease;
+    color: white; /* White color for navigation links */
+    text-decoration: none; /* Removes underline from links */
+    font-size: 1rem; /* Standard font size for navigation links */
+    padding: 8px 15px; /* Adds padding around links */
+    border-radius: 3px; /* Rounds link corners slightly */
+    transition: background-color 0.3s ease; /* Smooth background color change */
 }
 
 nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2); /* Highlight effect on hover */
 }
 
 .container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    max-width: 900px; /* Limits container width */
+    margin: 40px auto; /* Centers container and adds top margin */
+    padding: 20px; /* Adds internal spacing */
+    background: white; /* White background for the content area */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds shadow for a card-like appearance */
+    border-radius: 8px; /* Rounds container corners */
 }
 
 h1, h3 {
-    color: #333333;
+    color: #333333; /* Sets heading colors */
 }
 
 label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
+    display: block; /* Ensures labels are on their own line */
+    margin: 10px 0 5px; /* Adds space around labels */
+    font-weight: bold; /* Makes labels stand out */
 }
 
 input[type="text"], input[type="email"], input[type="password"], select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    width: 100%; /* Ensures inputs fill their container */
+    padding: 10px; /* Adds internal padding for better usability */
+    margin-bottom: 15px; /* Space below inputs */
+    border: 1px solid #ccc; /* Adds a light border */
+    border-radius: 5px; /* Rounds input corners */
+    font-size: 1rem; /* Standard font size for inputs */
+    transition: border-color 0.3s ease; /* Smooth border color change */
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-    border-color: #4CAF50;
-    outline: none;
+    border-color: #4CAF50; /* Green border on focus */
+    outline: none; /* Removes default focus outline */
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.2rem;
-    color: white;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%; /* Makes buttons full width */
+    padding: 10px; /* Adds internal padding */
+    font-size: 1.2rem; /* Increases font size */
+    color: white; /* White text color */
+    background-color: #4CAF50; /* Green background color */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Rounds button corners */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth color change on hover */
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Darker green on hover */
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+    list-style: none; /* Removes default bullet points */
+    padding: 0; /* Removes default padding */
 }
 
 li {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    border-left: 5px solid #4CAF50;
+    margin: 10px 0; /* Adds space between list items */
+    padding: 10px; /* Adds internal spacing */
+    background-color: #f4f4f4; /* Light background for list items */
+    border-radius: 5px; /* Rounds corners */
+    border-left: 5px solid #4CAF50; /* Green accent on the left */
 }
 
 .footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    margin-top: 30px;
+    text-align: center; /* Centers footer content */
+    padding: 20px; /* Adds internal spacing */
+    background-color: #333; /* Dark background */
+    color: white; /* White text color */
+    margin-top: 30px; /* Adds space above the footer */
 }
 
 /* Table Styles for Leaderboard */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+    width: 100%; /* Makes the table fill its container */
+    border-collapse: collapse; /* Removes space between table cells */
+    margin: 20px 0; /* Adds space above and below the table */
 }
 
 th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    padding: 12px 15px; /* Adds padding inside table cells */
+    text-align: left; /* Left-aligns text */
+    border-bottom: 1px solid #ddd; /* Adds a border below cells */
 }
 
 th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #4CAF50; /* Green background for table headers */
+    color: white; /* White text color for headers */
 }
 
 tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: #f1f1f1; /* Highlights rows on hover */
 }
 
-/*Stle for preview leaderboard on homepage*/
+/* Style for preview leaderboard on homepage */
 .leaderboard-preview {
-    margin-top: 40px;
+    margin-top: 40px; /* Adds space above the leaderboard preview */
 }
 
 .leaderboard-preview h2 {
-    font-size: 1.8rem;
-    color: #4CAF50;
-    margin-bottom: 10px;
+    font-size: 1.8rem; /* Increases heading font size */
+    color: #4CAF50; /* Green color for leaderboard heading */
+    margin-bottom: 10px; /* Space below heading */
 }
 
 .leaderboard-preview table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    width: 100%; /* Full-width table */
+    border-collapse: collapse; /* Removes cell spacing */
+    margin-bottom: 20px; /* Space below the table */
 }
 
 .leaderboard-preview th, .leaderboard-preview td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
+    padding: 10px; /* Padding inside leaderboard cells */
+    border: 1px solid #ddd; /* Adds border around cells */
+    text-align: center; /* Centers text */
 }
 
 .leaderboard-preview th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #4CAF50; /* Green header background */
+    color: white; /* White text color */
 }
 
 .leaderboard-preview tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Alternating row color for better readability */
 }
 
 .leaderboard-preview .button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: #4CAF50;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    display: inline-block; /* Ensures button behaves like a block element */
+    padding: 10px 20px; /* Adds internal spacing */
+    font-size: 1rem; /* Standard font size */
+    color: white; /* White text color */
+    background-color: #4CAF50; /* Green button background */
+    text-decoration: none; /* Removes underline */
+    border-radius: 5px; /* Rounds button corners */
+    transition: background-color 0.3s; /* Smooth background change */
 }
 
 .leaderboard-preview .button:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Darker green on hover */
 }

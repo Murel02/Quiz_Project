@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="/style.css">
+    <!-- Meta information -->
+    <meta charset="UTF-8"> <!-- Set the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensure the page is responsive on mobile -->
+    <title>Register</title> <!-- Page title -->
+    <link rel="stylesheet" href="/style.css"> <!-- Link to the external stylesheet -->
 </head>
 <body>
 <header>
     <nav>
+        <!-- Logo linking to the home page -->
         <a href="/home" class="logo">
-            <img src="/images/pixilart-drawing.png" alt="QuizMaster Logo" class="logo-image">
+            <img src="/images/pixilart-drawing.png" alt="QuizMaster Logo" class="logo-image"> <!-- QuizMaster logo -->
         </a>
-        <a href="/home">Home</a>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+        <!-- Navigation links -->
+        <a href="/home">Home</a> <!-- Link to the home page -->
+        <a href="/login">Login</a> <!-- Link to the login page -->
+        <a href="/register">Register</a> <!-- Link to the register page -->
     </nav>
 </header>
 <div class="container">
-    <h1>Register</h1>
-    <form action="/register" method="POST">
+    <h1>Register</h1> <!-- Registration page heading -->
+    <!-- Registration form -->
+    <form action="/register" method="POST"> <!-- Form submission POST request -->
+        <!-- Name input field -->
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required> <!-- Required name field -->
 
+        <!-- Email input field -->
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required> <!-- Required email field -->
 
+        <!-- Password input field -->
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required> <!-- Required password field -->
 
-        <button type="submit">Register</button>
+        <!-- Submit button -->
+        <button type="submit">Register</button> <!-- Button to submit the form -->
     </form>
+    <!-- Link to go back to the login page -->
     <a href="/login">Back to login</a>
 </div>
 <footer>
+    <!-- Footer information -->
     <p>&copy; 2024 QuizMaster. All rights reserved.</p>
 </footer>
 </body>

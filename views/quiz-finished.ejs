@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Results</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Quiz Results</title> <!-- Page title -->
+    <link rel="stylesheet" href="/style.css"> <!-- Link to external stylesheet -->
 </head>
 <body>
 <header>
+    <!-- Navigation bar with links to Home, Leaderboard, and Logout/Login based on user session -->
     <nav>
         <a href="/home" class="logo">
             <img src="/images/pixilart-drawing.png" alt="QuizMaster Logo" class="logo-image">
         </a>
         <a href="/home">Home</a>
         <a href="/leaderboard">Leaderboard</a>
-        <% if (isLoggedIn) { %>
-            <a href="/logout">Logout</a>
-        <% } else { %>
-            <a href="/login">Login</a>
+        <% if (isLoggedIn) { %> <!-- Show Logout if logged in -->
+        <a href="/logout">Logout</a>
+        <% } else { %> <!-- Show Login if not logged in -->
+        <a href="/login">Login</a>
         <% } %>
     </nav>
 </header>
+
 <div class="container">
+    <!-- Display quiz results: number of correct answers out of total questions -->
     <h1>Quiz Results</h1>
     <p>You answered <strong><%= totalCorrect %></strong> out of <strong><%= totalQuestions %></strong> questions correctly.</p>
+
+    <!-- Loop through all questions and display question, user's answer, correct answer, and result -->
     <ul>
         <% quiz.forEach((question, index) => { %>
             <li>
@@ -34,9 +40,13 @@
             </li>
         <% }) %>
     </ul>
+
+    <!-- Link to return to home page -->
     <a href="/home" class="button">Back to Home</a>
 </div>
+
 <footer class="footer">
+    <!-- Footer with copyright notice -->
     <p>&copy; 2024 QuizMaster. All rights reserved.</p>
 </footer>
 

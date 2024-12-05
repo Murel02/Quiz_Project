@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Login</title> <!-- Title for the page -->
+    <link rel="stylesheet" href="/style.css"> <!-- Link to external stylesheet -->
 </head>
 <body>
 <div class="container">
-    <h1>Login</h1>
+    <h1>Login</h1> <!-- Main heading for the login form -->
+
+    <!-- Display success message if the registration was successful -->
     <% if (success) { %>
         <p class="success">Registration successful! Please log in.</p>
     <% } %>
+
+    <!-- Login form -->
     <form action="/login" method="POST">
+        <!-- Input fields for email and password -->
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
+        <!-- Submit button for login -->
         <button type="submit">Login</button>
     </form>
 </div>

@@ -1,21 +1,22 @@
-version: '3'
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - PORT=3000
-      - MONGO_URL=mongodb://mongo:27017/quiz_project
-    depends_on:
-      - mongo
+version: '3'  # Define the version of Docker Compose syntax
 
-  mongo:
-    image: mongo:4.4
+services:  # List of services to be run in the container
+  app:  # The main application service
+    build: .  # Build the Dockerfile from the current directory
     ports:
-      - "27017:27017"
+      - "3000:3000"  # Expose port 3000 on the host and map it to port 3000 in the container
+    environment:
+      - PORT=3000  # Set the application port to 3000
+      - MONGO_URL=mongodb://mongo:27017/quiz_project  # MongoDB URL for the application to connect to
+    depends_on:
+      - mongo  # Ensure the 'mongo' service starts before 'app'
+
+  mongo:  # MongoDB service
+    image: mongo:4.4  # Use the official MongoDB 4.4 image
+    ports:
+      - "27017:27017"  # Expose MongoDB default port 27017 to the host
     volumes:
-      - mongo-data:/data/db
+      - mongo-data:/data/db  # Persist MongoDB data using a named volume
 
 volumes:
-  mongo-data:
+  mongo-data:  # Define the named volume to store MongoDB data persistently
