@@ -44,14 +44,16 @@
                 <thead>
                 <!-- Table headers for player name and score -->
                 <tr>
+                    <th>#</th>
                     <th>Name</th>
                     <th>Score</th>
                 </tr>
                 </thead>
                 <tbody>
                 <!-- Loop through the topPlayers array to display player data -->
-                <% topPlayers.forEach(player => { %>
+                <% topPlayers.forEach((player, index) => { %>
                     <tr>
+                        <td><%= index + 1 %></td>
                         <td><%= player.name %></td> <!-- Player's name -->
                         <td><%= player.score %></td> <!-- Player's score -->
                     </tr>
